@@ -1,4 +1,4 @@
-`getNV21()` 的输入图像，长宽不能是奇数，先要调用 cropBitmap 裁剪
+`getNV21()` 输入图像的长宽都不能是奇数，先调用 cropBitmap 裁剪
 ```java
 Bitmap croppedBitmap = cropBitmap(img);
 byte[] data = getNV21(croppedBitmap);
@@ -17,22 +17,11 @@ byte[] data = getNV21(croppedBitmap);
         int height = img.getHeight();
 
         int[] argb = new int[width * height];
-
-        try {
-            img.getPixels(argb, 0, width, 0, 0, width, height);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(Utils.TAG, e.getMessage());
-        }
-
-        byte[] yuv = new byte[width * height * 3 / 2];
-
-        try {
-            encodeYUV420SP(yuv, argb, width, height);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(Utils.TAG, e.getMessage());
-        }
+        img.getPixels(argb, 0, width, 0, 0, width, height);
+        
+        // 如果 height 和 width 都为奇数，则 yuv 会比原图小
+        byte[] yuv = new byte[width * height * 3 / 2];
+        encodeYUV420SP(yuv, argb, width, height);
 
         return yuv;
     }
@@ -58,7 +47,7 @@ byte[] data = getNV21(croppedBitmap);
                 U = ((-38 * R - 74 * G + 112 * B + 128) >> 8) + 128;
                 V = ((112 * R - 94 * G - 18 * B + 128) >> 8) + 128;
 
-                // NV21 has a plane of Y and interleaved planes of VU each sampled by a factor of 2
+                // NV21 has a plane of Y and interleaved planes of VU each sampled by a factor of 2
                 //    meaning for every 4 Y pixels there are 1 V and 1 U.  Note the sampling is
                 // every other
                 //    pixel AND every other scanline.
@@ -73,3 +62,5 @@ byte[] data = getNV21(croppedBitmap);
         }
     }
 ```
+
+参考：https://stackoverflow.com/questions/5960247/convert-bitmap-array-to-yuv-ycbcr-nv21
