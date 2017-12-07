@@ -1,6 +1,7 @@
 ## 第三方库
-Google libyuv: https://chromium.googlesource.com/libyuv/libyuv/
-参考博文：http://www.cnblogs.com/raomengyang/p/6288019.html
+- Google libyuv: https://chromium.googlesource.com/libyuv/libyuv/
+- 在 Android 上用 libyuv 参考博文：http://www.cnblogs.com/raomengyang/p/6288019.html
+- https://github.com/eterrao/AndroidLibyuvImageUtils
 
 ## 旋转 YUV NV21
 
