@@ -1,0 +1,1 @@
+- 查看是否一个 library 已经安装：ldconfig -p | grep library_name
