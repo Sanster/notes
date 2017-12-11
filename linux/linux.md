@@ -1,1 +1,2 @@
-- 查看是否一个 library 已经安装：ldconfig -p | grep library_name
+- 查看是否一个 library 已经安装：`ldconfig -p | grep library_name`
+- 从命令行查看图片：`eog filename`
