@@ -1,6 +1,8 @@
 Tensorflow error:
 ```
-
+...
+libnvidia-fatbinaryloader.so.384.111 not found
+...
 ```
 
 Show current version:
