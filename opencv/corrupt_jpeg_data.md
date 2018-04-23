@@ -13,3 +13,6 @@ Corrupt JPEG data: 1 extraneous bytes before marker 0xd4
 这个[Issue](https://github.com/opencv/opencv/issues/9477) 里面提到，这是 OpenCV 自带的 libjpeg 里的 bug，
 如果使用系统自带 libjpeg 可能可以解决这个问题，具体的方法是在 CMake 里设置 `WITH_JPEG=OFF`，然后重新编译。
 在我的环境下 bug 修复了，如果还有问题，可以再参考这个 [Pull Request](https://github.com/opencv/opencv/pull/9479)。
+
+Update：
+设置了 `WITH_JPEG=OFF` 就不能保存 jpg 格式的图片了，尝试了 `WITH_JPEG=ON & BUILD_JPEG=OFF` 的组合，依然会报错
