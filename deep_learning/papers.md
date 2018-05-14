@@ -3,6 +3,8 @@
 - YOLO9000(YOLO v2) - [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
 
 ## 文字检测
+https://github.com/whitelok/image-text-localization-recognition
+
 - FCN(CVPR 2016)
   - Paper: [Multi-Oriented Text Detection with Fully Convolutional Networks](https://arxiv.org/abs/1604.04018)
   - Code: 
