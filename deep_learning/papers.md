@@ -11,6 +11,7 @@ https://github.com/whitelok/image-text-localization-recognition
 - EAST(CVPR 2017)
   - Paper: [EAST: An Efficient and Accurate Scene Text Detector](https://arxiv.org/abs/1704.03155) 
   - Code: https://github.com/argman/EAST
+  - Demo: http://east.zxytim.com/
 - SegLink(CVPR 2017)
   - Paper: [Detecting Oriented Text in Natural Images by Linking Segments](https://arxiv.org/abs/1703.06520)
   - Code: 
