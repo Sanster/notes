@@ -1,3 +1,4 @@
+## 字段含义
 - PRI：进程的优先级别
 - NI：进程的优先级别数值
 - VIRT：进程占用的虚拟内存值
@@ -8,3 +9,7 @@
 - MEM%：该进程占用的物理内存和总内存的百分比
 - TIME+：该进程启动后占用的总的CPU时间
 - Command：进程启动的启动命令名称
+
+## 有多个同名进程
+使用`H`只显示主进程
+[why-are-there-many-processes-listed-under-the-same-title-in-htop](https://superuser.com/questions/118086/why-are-there-many-processes-listed-under-the-same-title-in-htop)
