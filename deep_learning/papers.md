@@ -1,6 +1,11 @@
 ## 目标检测
-- YOLO - [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
-- YOLO9000(YOLO v2) - [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
+- YOLO 
+  - Paper [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
+- YOLO9000(YOLO v2) 
+  - Paper: [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
+- SSD(ECCV2016)
+  - Paper: [SSD: Single Shot MultiBox Detector](https://arxiv.org/abs/1512.02325)
+  - Code: https://github.com/weiliu89/caffe/tree/ssd
 
 ## 文字检测
 https://github.com/whitelok/image-text-localization-recognition
@@ -20,9 +25,12 @@ https://github.com/whitelok/image-text-localization-recognition
 - TextBoxes(AAAI 2017)
   - Paper: [TextBoxes: A Fast Text Detector with a Single Deep Neural Network](https://arxiv.org/abs/1611.06779)
   - Code: https://github.com/MhLiao/TextBoxes
+- TextBoxes++
+  - Paper: [TextBoxes++: A Single-Shot Oriented Scene Text Detector](https://arxiv.org/abs/1801.02765)
+  - Code: https://github.com/MhLiao/TextBoxes_plusplus
 - RRPN(2017)
   - Paper: [Arbitrary-Oriented Scene Text Detection via Rotation Proposals](https://arxiv.org/abs/1703.01086)
-  - Code: https://github.com/mjq11302010044/RRPN
+  - Code: https://github.com/mjq11302010044/RRPN
 - (CVPR 2017)
   - Paper: [Deep Matching Prior Network: Toward Tighter Multi-oriented Text Detection](https://arxiv.org/abs/1703.01425)
   - Code: 
