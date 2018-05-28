@@ -1,1 +1,1 @@
-- Force keras to run on CPU `CUDA_VISIBLE_DEVICES="" ./your_keras_code.py` [sof](https://stackoverflow.com/questions/40690598/can-keras-with-tensorflow-backend-be-forced-to-use-cpu-or-gpu-at-will)
+- Force keras to run on CPU `CUDA_VISIBLE_DEVICES="" ./your_keras_code.py` [SOF](https://stackoverflow.com/questions/40690598/can-keras-with-tensorflow-backend-be-forced-to-use-cpu-or-gpu-at-will)
