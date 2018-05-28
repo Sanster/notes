@@ -3,6 +3,8 @@
   - Paper [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
 - YOLO9000(YOLO v2) 
   - Paper: [YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242)
+- YOLOv3
+  - Paper: [YOLOv3: An Incremental Improvement](https://pjreddie.com/media/files/papers/YOLOv3.pdf)
 - SSD(ECCV2016)
   - Paper: [SSD: Single Shot MultiBox Detector](https://arxiv.org/abs/1512.02325)
   - Code: https://github.com/weiliu89/caffe/tree/ssd
