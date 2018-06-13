@@ -39,3 +39,6 @@ https://github.com/whitelok/image-text-localization-recognition
 - DDR(2017)
   - Paper: [Deep Direct Regression for Multi-Oriented Scene Text Detection](https://arxiv.org/abs/1703.08289)
   - Code: 
+- FOST(2018.1)
+  - Paper: [FOTS: Fast Oriented Text Spotting with a Unified Network](https://arxiv.org/pdf/1801.01671.pdf)
+  - Demo: https://www.youtube.com/watch?v=F7TTYlFr2QM
