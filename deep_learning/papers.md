@@ -42,3 +42,9 @@ https://github.com/whitelok/image-text-localization-recognition
 - FOST(2018.1)
   - Paper: [FOTS: Fast Oriented Text Spotting with a Unified Network](https://arxiv.org/pdf/1801.01671.pdf)
   - Demo: https://www.youtube.com/watch?v=F7TTYlFr2QM
+- PixelLink(AAAI-2018)
+  - Paper: [PixelLink: Detecting Scene Text via Instance Segmentation](https://arxiv.org/abs/1801.01315)
+  - Code: https://github.com/ZJULearning/pixel_link
+- (CVPR2018)
+  - Paper: [Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation]()
+  - Code:
