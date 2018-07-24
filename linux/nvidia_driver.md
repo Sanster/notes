@@ -19,3 +19,5 @@ Install driver version required by Tensorflow:
 ```
 sudo apt install nvidia-384=384.111-0ubuntu0.16.04.1
 ```
+
+Install cuDNN: https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html
