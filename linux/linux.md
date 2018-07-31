@@ -7,3 +7,4 @@
 Linux 有两种 clipboard： PRIMARY (Ctrl-X/C/V) 和 SELECTION (mouse selected text, inserted with Shift-Insert or clicking the mouse middle button），通过下面的命令可以把命令行的输出同时拷贝到两种 clipboard 上：
 `echo "Hello world" | xclip -i selection primary | xclip -i selection clipboard`
 - 查看当前文件夹大小：`du -h --max-depth=1`
+- 查看显卡：`lspci  | grep -i vga`
