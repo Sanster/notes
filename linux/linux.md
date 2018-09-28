@@ -9,4 +9,5 @@ Linux 有两种 clipboard： PRIMARY (Ctrl-X/C/V) 和 SELECTION (mouse selected 
 `echo "Hello world" | xclip -i selection primary | xclip -i selection clipboard`
 - 查看当前文件夹大小：`du -h --max-depth=1`
 - 查看显卡：`lspci  | grep -i vga`
-- 压缩文件：`zip -r myfile.zip ./test.txt`
+- 压缩文件夹：`zip -r myfile.zip ./test_dir`
+- 压缩文件：`zip myfile.zip ./test.txt`
