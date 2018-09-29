@@ -21,4 +21,14 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       
 make -j4
 make install
+ldconfig
 ```
+
+check
+```
+import cv2
+print(cv2.__version__)
+```
+
+- https://www.pyimagesearch.com/2016/07/11/compiling-opencv-with-cuda-support/
+- https://medium.com/@avkashchauhan/compile-opencv3-with-python3-5-conda-environment-on-osx-sierra-ab1c7b775cb
