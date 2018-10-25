@@ -1,0 +1,1 @@
+- 安装 pyqt5 python2.7：https://github.com/pyqt/python-qt5
