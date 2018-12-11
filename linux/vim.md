@@ -1,3 +1,5 @@
+- 格式化 json：`%!python -m json.tool`
+
 ## 替换
 - 仅替换选中区域中的内容：`'<,'>s/src/dst/g`
 
