@@ -11,3 +11,4 @@ Linux 有两种 clipboard： PRIMARY (Ctrl-X/C/V) 和 SELECTION (mouse selected 
 - 查看显卡：`lspci  | grep -i vga`
 - 压缩文件夹：`zip -r myfile.zip ./test_dir`
 - 压缩文件：`zip myfile.zip ./test.txt`
+- 命令行查看 json：`apt-get install yajl-tools`.   echo '{"b":2, "a":1}' | json_reformat
