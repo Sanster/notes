@@ -1,2 +1,7 @@
 .ipynb_checkpoints/
 .vscode
+.idea/
+.DS_Store
+__pycache__/
+cs231/spring1718_assignment2_v2/cs231n/datasets/cifar-10-python.tar.gz.1
+cs231/spring1718_assignment2_v2/cs231n/datasets/cifar-10-batches-py
