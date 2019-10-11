@@ -6,6 +6,7 @@ import random
 
 from torch import nn, optim
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 from helper import prepareData, tensorsFromPair, MAX_LENGTH, SOS_token, EOS_token, timeSince, showPlot, \
     tensorFromSentence
@@ -78,7 +79,7 @@ def trainIters(input_lang, output_lang, encoder, decoder, n_iters, print_every=1
     training_pairs = [tensorsFromPair(input_lang, output_lang, random.choice(pairs), device) for i in range(n_iters)]
     criterion = nn.NLLLoss()
 
-    for iter in range(1, n_iters + 1):
+    for iter in tqdm(range(1, n_iters + 1), total=n_iters):
         training_pair = training_pairs[iter - 1]
         input_tensor = training_pair[0]
         target_tensor = training_pair[1]
@@ -156,9 +157,11 @@ if __name__ == "__main__":
     hidden_size = 64
     encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
     attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
+
+    print('Start train iters')
     trainIters(input_lang, output_lang, encoder1, attn_decoder1, 75000, print_every=5000)
 
-    evaluateRandomly(encoder1, attn_decoder1, device)
+    evaluateRandomly(encoder1, attn_decoder1, pairs)
 
     output_words, attentions = evaluate(encoder1, attn_decoder1, "je suis trop froid .")
     plt.matshow(attentions.numpy())
