@@ -25,7 +25,12 @@ def affine_forward(x, w, b):
     # TODO: Implement the affine forward pass. Store the result in out. You   #
     # will need to reshape the input into rows.                               #
     ###########################################################################
-    pass
+    
+    
+    N = x.shape[0]
+    x_reshaped = x.reshape(N, -1)
+    out = x_reshaped.dot(w) + b
+    
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -54,7 +59,14 @@ def affine_backward(dout, cache):
     ###########################################################################
     # TODO: Implement the affine backward pass.                               #
     ###########################################################################
-    pass
+    
+    N, D = x.shape[0], w.shape[0]
+#     print('dout.shape', dout.shape)
+#     print('w.T', w.T.shape)
+    dx = np.dot(dout, w.T).reshape(x.shape)
+    dw = np.dot(x.reshape(N, D).T, dout)
+    db = np.sum(dout, axis = 0)
+    
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -76,7 +88,8 @@ def relu_forward(x):
     ###########################################################################
     # TODO: Implement the ReLU forward pass.                                  #
     ###########################################################################
-    pass
+    out = np.zeros_like(x)
+    out[x>0] = x[x>0]
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -99,7 +112,8 @@ def relu_backward(dout, cache):
     ###########################################################################
     # TODO: Implement the ReLU backward pass.                                 #
     ###########################################################################
-    pass
+    dx = np.zeros_like(x)
+    dx[x>0] = dout[x>0]
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -450,7 +464,25 @@ def conv_forward_naive(x, w, b, conv_param):
     # TODO: Implement the convolutional forward pass.                         #
     # Hint: you can use the function np.pad for padding.                      #
     ###########################################################################
-    pass
+    stride, pad = conv_param['stride'], conv_param['pad']
+    x_padded = np.pad(x, [(0,0),(0,0),(1,1),(1,1)])
+    N, C, H, W = x.shape
+    F, C, HH, WW = w.shape
+    out_H = 1 + (H + 2*pad - HH) // stride
+    out_W = 1 + (W + 2*pad - WW) // stride
+    
+#     print('padded_input', padded_input.shape)
+#     print('w.shape',w.shape)
+
+    out = np.zeros([N, F, out_H, out_W])
+  
+    for _y in range(out_H):
+      for _x in range(out_W):
+        x_input = x_padded[:,:,_y*stride:_y*stride+HH,_x*stride:_x*stride+WW]
+        for f in range(F):
+          out[:, f, _y, _x] = np.sum(x_input * w[f,:,:,:], axis=(1,2,3))
+    
+    out = out + b[None,:,None,None]
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -475,8 +507,32 @@ def conv_backward_naive(dout, cache):
     ###########################################################################
     # TODO: Implement the convolutional backward pass.                        #
     ###########################################################################
-    pass
-    ###########################################################################
+    x, w, b, conv_param = cache
+    stride, pad = conv_param['stride'], conv_param['pad']
+    
+    N, C, H, W = x.shape
+    F, C, HH, WW = w.shape
+    N, F, H_out, W_out = dout.shape
+    
+    x_padded = np.pad(x, [(0,0),(0,0),(1,1),(1,1)])
+    
+    db = np.sum(dout, axis=(0,2,3))
+    
+    dw = np.zeros_like(w)
+    dx_pad = np.zeros_like(x_padded)
+    
+    for i in range(H_out):
+      for j in range(W_out):
+        # 4,3,3,3
+        x_padded_mask = x_padded[:,:, i*stride:i*stride+HH, j*stride:j*stride+WW]
+        for f in range(F):
+          dw[f, :, :, :] += np.sum(x_padded_mask * dout[:, f, i, j][:, None, None, None], axis=0)
+          
+        for n in range(N):
+          dx_pad[n,:,i*stride:i*stride+HH,j*stride:j*stride+WW] += np.sum(w[:,:,:,:] * dout[n, :, i, j][:,None,None,None], axis=0)
+          
+    dx = dx_pad[:,:,pad:-pad,pad:-pad]
+     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
     return dx, dw, db
@@ -505,7 +561,17 @@ def max_pool_forward_naive(x, pool_param):
     ###########################################################################
     # TODO: Implement the max-pooling forward pass                            #
     ###########################################################################
-    pass
+    pool_height, pool_width, stride = pool_param['pool_height'], pool_param['pool_width'], pool_param['stride']
+    N, C, H, W = x.shape
+    out_H = 1 + (H - pool_height) // stride
+    out_W = 1 + (W - pool_width) // stride
+    
+    out = np.zeros((N, C, out_H, out_W))
+    for i in range(out_H):
+      for j in range(out_W):
+        x_mask = x[:, :, i*stride:i*stride + pool_height, j*stride:j*stride + pool_width]
+        out[:, :, i, j] = np.max(x_mask, axis=(2,3))
+    
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -528,7 +594,23 @@ def max_pool_backward_naive(dout, cache):
     ###########################################################################
     # TODO: Implement the max-pooling backward pass                           #
     ###########################################################################
-    pass
+    x, pool_param = cache
+    N, C, H, W = x.shape
+    pool_height, pool_width, stride = pool_param['pool_height'], pool_param['pool_width'], pool_param['stride']
+
+    out_H = 1 + (H - pool_height) // stride
+    out_W = 1 + (W - pool_width) // stride
+    
+    dx = np.zeros_like(x)
+    
+    for i in range(out_H):
+      for j in range(out_W):
+        x_mask = x[:, :, i*stride:i*stride+pool_height, j*stride:j*stride+pool_width]
+        dx_mask = dx[:, :, i*stride:i*stride+pool_height, j*stride:j*stride+pool_width]
+        
+        ind = np.max(x_mask, axis=(2,3), keepdims=True) == x_mask
+        dx_mask += ind * dout[:, :, i, j][:,:,None,None]
+        
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -706,13 +788,17 @@ def softmax_loss(x, y):
     - loss: Scalar giving the loss
     - dx: Gradient of the loss with respect to x
     """
-    shifted_logits = x - np.max(x, axis=1, keepdims=True)
-    Z = np.sum(np.exp(shifted_logits), axis=1, keepdims=True)
-    log_probs = shifted_logits - np.log(Z)
-    probs = np.exp(log_probs)
+    # 指数计算，防止过大
+    probs = np.exp(x - np.max(x, axis=1, keepdims=True))
+    probs /= np.sum(probs, axis=1, keepdims=True)
+ 
+    # 交叉熵损失
     N = x.shape[0]
-    loss = -np.sum(log_probs[np.arange(N), y]) / N
+    loss = -np.sum(np.log(probs[np.arange(N), y])) / N
+    
     dx = probs.copy()
+    # 根据求导公式， 1 其实是 y_i
     dx[np.arange(N), y] -= 1
     dx /= N
+    
     return loss, dx
