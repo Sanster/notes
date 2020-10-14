@@ -14,3 +14,4 @@ Linux 有两种 clipboard： PRIMARY (Ctrl-X/C/V) 和 SELECTION (mouse selected 
 - 命令行查看 json：
   - `apt-get install yajl-tools`. 
   - `echo '{"b":2, "a":1}' | json_reformat`
+- 查看多个进程的内存总量：`top -b -n1 | grep chrome | awk '{ SUM += $9} END { print SUM }'`，`$6` 代表第6列(RES)的
