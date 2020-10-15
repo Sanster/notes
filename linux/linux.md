@@ -15,3 +15,7 @@ Linux 有两种 clipboard： PRIMARY (Ctrl-X/C/V) 和 SELECTION (mouse selected 
   - `apt-get install yajl-tools`. 
   - `echo '{"b":2, "a":1}' | json_reformat`
 - 查看多个进程的内存总量：`top -b -n1 | grep chrome | awk '{ SUM += $9} END { print SUM }'`，`$6` 代表第6列(RES)的
+- 如何把服务器上的字符串拷贝到本机的剪贴板： 
+  - 参考 https://gist.github.com/dergachev/8259104
+  - 本机启动：while (true); do nc -l 5556 | tr -d '\n' | pbcopy; done
+  - .zshrc 里面设置：nc -q0 xxx.xx.xx.xx 5556
