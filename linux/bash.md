@@ -1,0 +1,1 @@
+- 获得当前脚本文件的父目录：result="`dirname "$(readlink -f "$0")"`"
