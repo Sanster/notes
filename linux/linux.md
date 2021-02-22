@@ -19,3 +19,4 @@ Linux 有两种 clipboard： PRIMARY (Ctrl-X/C/V) 和 SELECTION (mouse selected 
   - 参考 https://gist.github.com/dergachev/8259104
   - 本机启动：while (true); do nc -l 5556 | tr -d '\n' | pbcopy; done
   - .zshrc 里面设置：nc -q0 xxx.xx.xx.xx 5556
+- 删除当前目录下所有的文件夹：`rm -R -- */` https://unix.stackexchange.com/questions/68846/how-do-i-remove-all-sub-directories-from-within-a-directory/68847
